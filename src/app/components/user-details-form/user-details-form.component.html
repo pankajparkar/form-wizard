@@ -9,20 +9,17 @@
     </label>
     <label>
         Where do you live
-        <input type="text" formControlName="location" />
+        <select formControlName="location">
+            <option>Please select country</option>
+            <option *ngFor="let location of locations">
+                {{ location.name }}
+            </option>
+        </select>
     </label>
     <div class="">
-        <label>
-            Standard
-            <input type="checkbox" value="standard" formControlName="package" />
-        </label>
-        <label>
-            Safe (+250HKD, 50%)
-            <input type="checkbox" value="safe_value" formControlName="package" />
-        </label>
-        <label>
-            Super Safe (+375HKD, 75%)
-            <input type="checkbox" value="super_safe" formControlName="package" />
+        <label *ngFor="let package of packages">
+            {{ package.description }}
+            <input type="checkbox" [value]="package.id" formControlName="package" />
         </label>
     </div>
     <div>
