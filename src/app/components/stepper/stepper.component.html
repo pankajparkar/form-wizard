@@ -1,16 +1,16 @@
 <div class="stepper-wrapper">
-    {{ steps?.length }}
+    {{ steps?.length }} - {{ currentIndex }}
     <ng-content>
 
     </ng-content>
     <div class="action-buttons">
-        <button>
+        <button type="button" (click)="prev()" *ngIf="backButtonEnabled">
             Back
         </button>
-        <button>
+        <button type="button" (click)="next()" *ngIf="nextButtonEnabled">
             Next
         </button>
-        <button>
+        <button type="button" (click)="next()" *ngIf="startButtonEnabled">
             Start
         </button>
     </div>
