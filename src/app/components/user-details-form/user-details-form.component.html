@@ -25,7 +25,7 @@
     <div class="form-control">
         <label *ngFor="let package of packages">
             {{ package.description }}
-            <input type="checkbox" [value]="package.id" formControlName="package" />
+            <input type="radio" [value]="package.id" formControlName="package" />
         </label>
     </div>
     <div>
