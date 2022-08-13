@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // TODO: move to different files
-interface Location {
-  id: number;
+export interface Location {
+  id: string;
   name: string;
-  code: string;
 }
 
 // TODO: move to different files
-interface Package {
+export interface Package {
   id: string;
   name: string;
   description: string;
@@ -30,24 +29,23 @@ interface Package {
 })
 export class UserDetailsFormComponent {
 
+  // TODO: move constants to somewhere else
   locations: Location[] = [
     {
-      id: 1,
+      id: 'HKD',
       name: 'Hong Kong',
-      code: 'HKD',
     },
     {
-      id: 2,
+      id: 'USD',
       name: 'USA',
-      code: 'USD',
     },
     {
-      id: 1,
+      id: 'AUD',
       name: 'Australia',
-      code: 'AUD',
     },
   ];
 
+  // TODO: move constants to somewhere else
   packages: Package[] = [
     {
       id: 'standard',
@@ -73,7 +71,7 @@ export class UserDetailsFormComponent {
     name: new FormControl<string>('', [Validators.required]),
     age: new FormControl<string>('', [Validators.required]),
     location: new FormControl<string>('', [Validators.required]),
-    package: new FormControl<string>('', [Validators.required]),
+    package: new FormControl<string>('standard', [Validators.required]),
   });
 
   constructor() { }
