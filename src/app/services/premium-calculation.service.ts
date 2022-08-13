@@ -7,9 +7,9 @@ export class PremiumCalculationService {
 
   constructor() { }
 
-  calculate(age: number, premium: string) {
-    const precentage = 50;
-    const basedOnAge = age * 10;
-    return basedOnAge + (basedOnAge * precentage / 100);
+  calculate(age: number, rate: number, premium: string) {
+    const precentage = 50 / 100;
+    const baseResult = age * 10 * rate;
+    return baseResult + (baseResult * precentage);
   }
 }
