@@ -1,1 +1,8 @@
-<p>step works!</p>
+<div class="step-wrapper">
+    <div class="step-header" *ngIf="header">
+        {{ header }}
+    </div>
+    <div class="step-content">
+        <ng-content></ng-content>
+    </div>
+</div>

@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 @Component({
   standalone: true,
   selector: 'fw-stepper',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+  ],
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss']
 })

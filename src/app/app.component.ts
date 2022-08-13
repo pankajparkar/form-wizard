@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+
+import { StepComponent } from './components/step/step.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 
 @Component({
@@ -10,6 +12,7 @@ import { StepperComponent } from './components/stepper/stepper.component';
   imports: [
     CommonModule,
     StepperComponent,
+    StepComponent,
   ]
 })
 export class AppComponent {
