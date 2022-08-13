@@ -3,6 +3,8 @@
         {{ header }}
     </div>
     <div class="step-content">
-        <ng-content></ng-content>
     </div>
 </div>
+<ng-template #stepContent>
+    <ng-content></ng-content>
+</ng-template>

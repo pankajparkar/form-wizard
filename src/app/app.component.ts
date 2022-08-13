@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 
 import { StepComponent } from './components/step/step.component';
 import { StepperComponent } from './components/stepper/stepper.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @Component({
   standalone: true,
@@ -13,6 +14,7 @@ import { StepperComponent } from './components/stepper/stepper.component';
     CommonModule,
     StepperComponent,
     StepComponent,
+    WelcomeComponent,
   ]
 })
 export class AppComponent {

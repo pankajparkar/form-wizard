@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef, ViewChild, ViewContainerRef, ViewRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,13 +8,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './step.component.html',
   styleUrls: ['./step.component.scss']
 })
-export class StepComponent implements OnInit {
+export class StepComponent {
 
   @Input() header!: string;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  @ViewChild('stepContent', { read: TemplateRef }) content!: TemplateRef<unknown>;
 
 }
