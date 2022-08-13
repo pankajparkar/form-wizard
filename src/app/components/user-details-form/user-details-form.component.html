@@ -1,1 +1,31 @@
-<p>user-details-form works!</p>
+<div [formGroup]="userDetailsForm">
+    <label>
+        Name
+        <input type="text" formControlName="name" />
+    </label>
+    <label>
+        Age
+        <input type="text" formControlName="age" />
+    </label>
+    <label>
+        Where do you live
+        <input type="text" formControlName="location" />
+    </label>
+    <div class="">
+        <label>
+            Standard
+            <input type="checkbox" value="standard" formControlName="package" />
+        </label>
+        <label>
+            Safe (+250HKD, 50%)
+            <input type="checkbox" value="safe_value" formControlName="package" />
+        </label>
+        <label>
+            Super Safe (+375HKD, 75%)
+            <input type="checkbox" value="super_safe" formControlName="package" />
+        </label>
+    </div>
+    <div>
+        <b>Your premium is: 500HKD</b>
+    </div>
+</div>
