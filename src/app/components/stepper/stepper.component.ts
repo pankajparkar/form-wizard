@@ -53,7 +53,6 @@ export class StepperComponent {
   ngAfterViewInit() {
     this.projectContent();
     this.steps.changes.subscribe((step) => {
-      console.log('step', step);
       this.projectContent();
     });
   }
