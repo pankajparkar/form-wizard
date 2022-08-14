@@ -4,11 +4,10 @@
         <button type="button" (click)="prev()" *ngIf="showPrevButton">
             {{ buttonLabels.prev }}
         </button>
-        <button type="button" (click)="next()" *ngIf="showNextButton">
+        <button type="button" (click)="next()" *ngIf="showNextButton && !isErrorPage">
             {{ buttonLabels.next }}
         </button>
     </div>
-    {{ buttonLabels | json }}
     <ng-template #defaultErrorTemplate>
         Something Went wrong
     </ng-template>

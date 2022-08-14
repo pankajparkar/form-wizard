@@ -24,13 +24,12 @@ export class StepperComponent implements AfterViewInit {
 
   showPrevButton = false;
   showNextButton = true;
-
   defaultButtonLabels = {
     prev: 'Back',
     next: 'Next',
-  }
-
+  };
   buttonLabels = { ...this.defaultButtonLabels };
+  isErrorPage = false;
 
   @ContentChildren(StepComponent, { descendants: true })
   steps!: QueryList<StepComponent>;
@@ -80,8 +79,9 @@ export class StepperComponent implements AfterViewInit {
       return;
     }
     const formData = this.step?.stepForm?.value;
+    this.isErrorPage = formData && this.step?.errorChecker && this.step.errorChecker(formData);
     // check if errorChecker expression, and if pass then redirect to error state.
-    if (formData && this.step?.errorChecker && this.step.errorChecker(formData)) {
+    if (this.isErrorPage) {
       this.renderErrorState();
       return;
     }
