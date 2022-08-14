@@ -47,9 +47,10 @@ export class StepperComponent implements AfterViewInit {
     if (this.step?.stepForm && this.step.stepForm.invalid) {
       return;
     }
+    const formData = this.step?.stepForm?.value;
     const updateIndex = this.currentIndex + 1;
     this.updateIndex(this.currentIndex + 1);
-    this.nextClick.emit(this.step?.stepForm?.value);
+    this.nextClick.emit(formData);
     if (this.steps.length === updateIndex) {
       this.winzardFinish.emit();
     }
