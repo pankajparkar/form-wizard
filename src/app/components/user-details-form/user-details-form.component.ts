@@ -1,4 +1,4 @@
-import { Component, Host, Input, OnInit, Optional } from '@angular/core';
+import { Component, Host, Input, OnDestroy, OnInit, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { locations } from '@constants/locations';
@@ -6,6 +6,7 @@ import { packages } from '@constants/packages';
 import { PremiumCalculationService } from 'src/app/services/premium-calculation.service';
 import { StepComponent } from '../step/step.component';
 import { UserDetails } from '@models/user-details.model';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'fw-user-details-form',
@@ -18,10 +19,11 @@ import { UserDetails } from '@models/user-details.model';
   templateUrl: './user-details-form.component.html',
   styleUrls: ['./user-details-form.component.scss']
 })
-export class UserDetailsFormComponent implements OnInit {
+export class UserDetailsFormComponent implements OnInit, OnDestroy {
 
   locations = locations;
   packages = packages;
+  destroyed$ = new Subject<void>();
 
   userDetailsForm = new FormGroup({
     name: new FormControl<string>('', [Validators.required]),
@@ -47,9 +49,9 @@ export class UserDetailsFormComponent implements OnInit {
       this.step.stepForm = this.userDetailsForm;
     }
 
-    // TODO: on destroy
-    // TODO: be specific on control when subscribe
-    this.userDetailsForm.valueChanges.subscribe(({ package: pckg, age, location }) => {
+    this.userDetailsForm.valueChanges.pipe(
+      takeUntil(this.destroyed$)
+    ).subscribe(({ package: pckg, age, location }) => {
       let total = 0;
       if (pckg && location && !!age) {
         const selectedPackage = this.packages.find(p => p.id === pckg)!;
@@ -58,6 +60,11 @@ export class UserDetailsFormComponent implements OnInit {
       }
       this.userDetailsForm.patchValue({ total }, { onlySelf: true, emitEvent: false });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next()
+    this.destroyed$.complete();
   }
 
 }

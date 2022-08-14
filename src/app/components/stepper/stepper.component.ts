@@ -83,6 +83,7 @@ export class StepperComponent implements AfterViewInit {
   }
 
   next() {
+    this.step?.stepForm?.markAllAsTouched();
     if (this.step?.stepForm && this.step.stepForm.invalid) {
       return;
     }
@@ -121,9 +122,5 @@ export class StepperComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.projectContent();
-    // TODO: unsubscribe event
-    this.steps.changes.subscribe((step) => {
-      this.projectContent();
-    });
   }
 }

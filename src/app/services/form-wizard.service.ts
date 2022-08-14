@@ -13,8 +13,6 @@ export class FormWizardService<T> {
     submited: false,
   } as any;
 
-  constructor() { }
-
   setDetails(value: T): void {
     // Figure out how generics can be used here properly
     this.wizard.userDetails = value;
