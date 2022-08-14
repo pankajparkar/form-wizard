@@ -122,7 +122,7 @@ describe('StepperComponent', () => {
     });
   });
 
-  fit('should call updateIndex method', () => {
+  it('should call updateIndex method', () => {
     component.stepper.updateIndex(1);
 
     expect(component.stepper.currentIndex).toBe(1);

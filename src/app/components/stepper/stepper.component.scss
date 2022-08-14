@@ -1,4 +1,9 @@
 .stepper-wrapper {
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    
     .step-header {
         font-size: 20px;
         font-weight: bold;
