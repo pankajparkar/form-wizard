@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 import { StepComponent } from '@components/step/step.component';
+import { StepErrorDirective } from '@directives/step-error.directive';
 
 @Component({
   standalone: true,
@@ -36,8 +37,8 @@ export class StepperComponent implements AfterViewInit {
   stepContainer: ViewContainerRef | undefined;
   @ViewChild('stepHeader', { read: ViewContainerRef })
   stepHeader: ViewContainerRef | undefined;
-  @ContentChild('error', { read: TemplateRef })
-  errorTemplate!: TemplateRef<unknown> | undefined;
+  @ContentChild(StepErrorDirective)
+  errorTemplate!: StepErrorDirective | undefined;
   @ViewChild('defaultErrorTemplate', { read: TemplateRef })
   defaultErrorTemplate!: TemplateRef<unknown>;
 
@@ -72,7 +73,8 @@ export class StepperComponent implements AfterViewInit {
     if (this.stepContainer && this.stepHeader) {
       this.stepContainer.clear();
       this.stepHeader.clear();
-      this.stepContainer.createEmbeddedView(this.errorTemplate ?? this.defaultErrorTemplate);
+      this.stepContainer.createEmbeddedView(this.errorTemplate?.template ?? this.defaultErrorTemplate);
+      this.stepHeader.createEmbeddedView(this.errorTemplate!.stepHeader.template);
       this.updateButtons(this.currentIndex, true);
     }
   }

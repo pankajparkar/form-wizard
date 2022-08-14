@@ -13,7 +13,8 @@
                 <ng-template stepHeader>Summary</ng-template>
                 <fw-summary [userDetails]="userDetails"></fw-summary>
             </fw-step>
-            <ng-template #error>
+            <ng-template fwErrorStep>
+                <ng-template stepHeader>Summary</ng-template>
                 <fw-error></fw-error>
             </ng-template>
         </fw-stepper>
