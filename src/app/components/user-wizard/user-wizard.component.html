@@ -1,6 +1,6 @@
 <div class="container">
     <div class="stepper-content">
-        <fw-stepper (nextClick)="nextClick($event)" (winzardFinish)="winzardFinish()">
+        <fw-stepper (nextClick)="nextClick($event)" (wizardFinish)="wizardFinish()" stepper="#fwStepper">
             <fw-step [buttonLabels]="{next: 'Start'}">
                 <ng-template fwStepHeader>Hello There!</ng-template>
                 <fw-welcome></fw-welcome>

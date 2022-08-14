@@ -2,9 +2,9 @@
     <h4>{{userDetails.name}},</h4>
     <div class="user-details">
         <div>Name: {{userDetails.name}}</div>
-        <div>Age: {{userDetails.age}}50</div>
-        <div>Where do you live: {{userDetails.location}}</div>
-        <div>Package: {{userDetails.package}}</div>
-        <div>Premium: {{ userDetails.total }}</div>
+        <div>Age: {{userDetails.age}}</div>
+        <div>Where do you live: {{selectedLocation.name}}</div>
+        <div>Package: {{selectedPackage.name}}</div>
+        <div>Premium: {{ userDetails.total | number }} {{ selectedLocation.id }}</div>
     </div>
 </div>

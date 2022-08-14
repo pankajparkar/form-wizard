@@ -20,7 +20,7 @@ import { ErrorStepHeaderDirective } from '@directives/error-step-header.directiv
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
   exportAs: 'fwStepper',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepperComponent implements AfterViewInit {
 
@@ -49,7 +49,7 @@ export class StepperComponent implements AfterViewInit {
 
   @Output() nextClick = new EventEmitter();
   @Output() prevClick = new EventEmitter();
-  @Output() winzardFinish = new EventEmitter();
+  @Output() wizardFinish = new EventEmitter();
 
   constructor(
     private cd: ChangeDetectorRef
@@ -97,7 +97,7 @@ export class StepperComponent implements AfterViewInit {
     this.updateIndex(this.currentIndex + 1);
     this.nextClick.emit(formData);
     if (this.steps.length === updateIndex) {
-      this.winzardFinish.emit();
+      this.wizardFinish.emit();
     }
   }
 
@@ -114,6 +114,12 @@ export class StepperComponent implements AfterViewInit {
       this.stepHeader.createEmbeddedView(this.step!.stepHeader.template);
       this.updateButtons(this.currentIndex);
     }
+  }
+
+  clear(): void {
+    this.steps?.forEach(
+      (step) => step.stepForm?.reset()
+    );
   }
 
   get step() {

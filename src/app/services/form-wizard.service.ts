@@ -8,10 +8,7 @@ export class FormWizardService<T> {
 
   // TODO: Figure out how generics can be used here properly
   // wizard = {} as T & BaseWizard;
-  wizard = {
-    formId: Math.round(Math.random() * 10000),
-    submited: false,
-  } as any;
+  wizard = this.createObject();
 
   setDetails(value: T): void {
     // Figure out how generics can be used here properly
@@ -22,7 +19,15 @@ export class FormWizardService<T> {
     return this.wizard;
   }
 
+  createObject() {
+    return {
+      formId: Math.round(Math.random() * 10000),
+      submited: false,
+    } as any;
+  }
+
   submit(): void {
     this.wizard.submited = true;
+    this.wizard = this.createObject();
   }
 }

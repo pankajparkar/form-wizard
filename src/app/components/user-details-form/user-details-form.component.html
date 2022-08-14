@@ -39,7 +39,7 @@
     </div>
     <ng-container *ngIf="userDetailsForm.value as formValues">
         <div *ngIf="formValues.total">
-            <b>Your premium is: {{ formValues.total }} {{ formValues.location }}</b>
+            <b>Your premium is: {{ formValues.total | number }} {{ formValues.location }}</b>
         </div>
     </ng-container>
 </div>

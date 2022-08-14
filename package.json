@@ -7,7 +7,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "build-prod": "ng build --c=production --base-href /form-wizard/",
+    "deploy": "gh-pages -d dist/form-wizard",
+    "build-deploy": "npm run build-prod && npm run copy-index && npm run deploy",
+    "copy-index": "cp dist/form-wizard/index.html dist/form-wizard/404.html",
+    "gh-pages": "gh-pages"
   },
   "private": true,
   "dependencies": {

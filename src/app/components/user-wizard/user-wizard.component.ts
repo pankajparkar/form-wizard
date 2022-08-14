@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { StepperComponent } from '@components/stepper/stepper.component';
@@ -34,6 +34,8 @@ import { ErrorStepHeaderDirective } from '@directives/error-step-header.directiv
 })
 export class UserWizardComponent {
 
+  @ViewChild(StepperComponent) stepper!: StepperComponent;
+
   constructor(
     private formWizard: FormWizardService<UserDetailsWizard>,
   ) { }
@@ -52,8 +54,11 @@ export class UserWizardComponent {
     return this.formWizard.getDetails().userDetails;
   }
 
-  winzardFinish() {
+  wizardFinish() {
     this.formWizard.submit();
+    alert('Product successfully bought.');
+    this.stepper.updateIndex(0);
+    this.stepper.clear();
   }
 
 }
