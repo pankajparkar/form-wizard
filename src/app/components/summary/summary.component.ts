@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserDetails } from 'src/app/models/user-details.model';
+import { UserDetails } from '@models/user-details.model';
 
 @Component({
   selector: 'fw-summary',

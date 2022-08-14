@@ -7,8 +7,8 @@ import { WelcomeComponent } from '../welcome/welcome.component';
 import { UserDetailsFormComponent } from '../user-details-form/user-details-form.component';
 import { SummaryComponent } from '../summary/summary.component';
 import { ErrorComponent } from '../error/error.component';
-import { FormWizardService } from '../../services/form-wizard.service';
-import { UserDetailsWizard } from '../../models/user-details-wizard.model';
+import { FormWizardService } from '@services/form-wizard.service';
+import { UserDetailsWizard } from '@models/user-details-wizard.model';
 
 @Component({
   selector: 'fw-user-wizard',

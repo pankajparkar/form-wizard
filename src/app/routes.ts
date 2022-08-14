@@ -1,7 +1,7 @@
 import { Routes } from "@angular/router";
-import { UserWizardComponent } from "./components/user-wizard/user-wizard.component";
-import { FormWizardService } from "./services/form-wizard.service";
-import { UserDetailsWizard } from "./models/user-details-wizard.model";
+import { UserWizardComponent } from "@components/user-wizard/user-wizard.component";
+import { FormWizardService } from "@services/form-wizard.service";
+import { UserDetailsWizard } from "@models/user-details-wizard.model";
 
 export const routes: Routes = [
     {

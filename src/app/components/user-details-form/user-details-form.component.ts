@@ -1,11 +1,11 @@
 import { Component, Host, Input, OnInit, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { locations } from 'src/app/constants/locations';
-import { packages } from 'src/app/constants/packages';
+import { locations } from '@constants/locations';
+import { packages } from '@constants/packages';
 import { PremiumCalculationService } from 'src/app/services/premium-calculation.service';
 import { StepComponent } from '../step/step.component';
-import { UserDetails } from 'src/app/models/user-details.model';
+import { UserDetails } from '@models/user-details.model';
 
 @Component({
   selector: 'fw-user-details-form',

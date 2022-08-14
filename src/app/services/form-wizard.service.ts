@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseWizard } from '../models/base-wizard.model';
+import { BaseWizard } from '@models/base-wizard.model';
 
 @Injectable({
   providedIn: 'root'
