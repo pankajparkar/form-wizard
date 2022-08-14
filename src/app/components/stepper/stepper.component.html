@@ -1,5 +1,10 @@
 <div class="stepper-wrapper">
-    <ng-container #stepContainer></ng-container>
+    <div class="step-header">
+        <ng-container #stepHeader></ng-container>
+    </div>
+    <div class="step-content">
+        <ng-container #stepContainer></ng-container>
+    </div>
     <div class="action-buttons">
         <button type="button" (click)="prev()" *ngIf="showPrevButton">
             {{ buttonLabels.prev }}

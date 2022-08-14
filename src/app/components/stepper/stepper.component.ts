@@ -34,6 +34,8 @@ export class StepperComponent implements AfterViewInit {
   steps!: QueryList<StepComponent>;
   @ViewChild('stepContainer', { read: ViewContainerRef })
   stepContainer: ViewContainerRef | undefined;
+  @ViewChild('stepHeader', { read: ViewContainerRef })
+  stepHeader: ViewContainerRef | undefined;
   @ContentChild('error', { read: TemplateRef })
   errorTemplate!: TemplateRef<unknown> | undefined;
   @ViewChild('defaultErrorTemplate', { read: TemplateRef })
@@ -67,8 +69,9 @@ export class StepperComponent implements AfterViewInit {
   }
 
   renderErrorState() {
-    if (this.stepContainer) {
+    if (this.stepContainer && this.stepHeader) {
       this.stepContainer.clear();
+      this.stepHeader.clear();
       this.stepContainer.createEmbeddedView(this.errorTemplate ?? this.defaultErrorTemplate);
       this.updateButtons(this.currentIndex, true);
     }
@@ -98,9 +101,11 @@ export class StepperComponent implements AfterViewInit {
   }
 
   private projectContent() {
-    if (this.steps.length && this.stepContainer) {
+    if (this.steps.length && this.stepContainer && this.stepHeader) {
       this.stepContainer.clear();
+      this.stepHeader.clear();
       this.stepContainer.createEmbeddedView(this.step?.content!);
+      this.stepHeader.createEmbeddedView(this.step!.stepHeader.template);
       this.updateButtons(this.currentIndex);
     }
   }
