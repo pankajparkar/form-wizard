@@ -1,4 +1,4 @@
-import { Component, ContentChildren, Input, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren, ViewContainerRef, ViewRef } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef, ViewChild, ViewChildren, ViewContainerRef, ViewRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StepComponent } from '../step/step.component';
 
@@ -22,6 +22,10 @@ export class StepperComponent {
 
   @Input() currentIndex = 0;
 
+  @Output() onNext = new EventEmitter();
+  @Output() onPrev = new EventEmitter();
+  @Output() onFinish = new EventEmitter();
+
   constructor() { }
 
   updateIndex(index: number) {
@@ -35,11 +39,17 @@ export class StepperComponent {
   }
 
   next() {
+    const updateIndex = this.currentIndex + 1;
     this.updateIndex(this.currentIndex + 1);
+    this.onNext.emit();
+    if (this.steps.length === updateIndex) {
+      this.onFinish.emit();
+    }
   }
 
   prev() {
     this.updateIndex(this.currentIndex - 1);
+    this.onPrev.emit();
   }
 
   private projectContent() {
