@@ -20,7 +20,7 @@ import { ErrorStepHeaderDirective } from '@directives/error-step-header.directiv
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
   exportAs: 'fwStepper',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepperComponent implements AfterViewInit {
 
@@ -55,7 +55,7 @@ export class StepperComponent implements AfterViewInit {
     private cd: ChangeDetectorRef
   ) { }
 
-  updateButtons(index: number, isErrorState = false) {
+  private updateButtons(index: number, isErrorState = false) {
     this.buttonLabels = {
       ...this.defaultButtonLabels,
       ...(this.step?.buttonLabels ?? {}),
@@ -72,7 +72,7 @@ export class StepperComponent implements AfterViewInit {
     }
   }
 
-  renderErrorState() {
+  private renderErrorState() {
     if (this.stepContainer && this.stepHeader) {
       this.stepContainer.clear();
       this.stepHeader.clear();
