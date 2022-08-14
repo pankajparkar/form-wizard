@@ -1,14 +1,15 @@
 <div class="stepper-wrapper">
     <ng-container #stepContainer></ng-container>
     <div class="action-buttons">
-        <button type="button" (click)="prev()" *ngIf="backButtonEnabled">
-            Back
+        <button type="button" (click)="prev()" *ngIf="showPrevButton">
+            {{ buttonLabels.prev }}
         </button>
-        <button type="button" (click)="next()" *ngIf="nextButtonEnabled">
-            Next
-        </button>
-        <button type="button" (click)="next()" *ngIf="startButtonEnabled">
-            Start
+        <button type="button" (click)="next()" *ngIf="showNextButton">
+            {{ buttonLabels.next }}
         </button>
     </div>
+    {{ buttonLabels | json }}
+    <ng-template #defaultErrorTemplate>
+        Something Went wrong
+    </ng-template>
 </div>

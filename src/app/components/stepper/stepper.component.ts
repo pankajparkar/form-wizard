@@ -1,7 +1,9 @@
 import {
   AfterViewInit,
-  Component, ContentChildren, EventEmitter, Input,
-  Output, QueryList, ViewChild, ViewContainerRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component, ContentChild, ContentChildren, EventEmitter, Input,
+  Output, QueryList, TemplateRef, ViewChild, ViewContainerRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -16,17 +18,28 @@ import { StepComponent } from '@components/step/step.component';
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
   exportAs: 'fwStepper',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepperComponent implements AfterViewInit {
 
-  backButtonEnabled = false;
-  nextButtonEnabled = false;
-  startButtonEnabled = true;
+  showPrevButton = false;
+  showNextButton = true;
+
+  defaultButtonLabels = {
+    prev: 'Back',
+    next: 'Next',
+  }
+
+  buttonLabels = { ...this.defaultButtonLabels };
 
   @ContentChildren(StepComponent, { descendants: true })
   steps!: QueryList<StepComponent>;
   @ViewChild('stepContainer', { read: ViewContainerRef })
   stepContainer: ViewContainerRef | undefined;
+  @ContentChild('error', { read: TemplateRef })
+  errorTemplate!: TemplateRef<unknown> | undefined;
+  @ViewChild('defaultErrorTemplate', { read: TemplateRef })
+  defaultErrorTemplate!: TemplateRef<unknown>;
 
   @Input() currentIndex = 0;
 
@@ -34,13 +47,31 @@ export class StepperComponent implements AfterViewInit {
   @Output() prevClick = new EventEmitter();
   @Output() winzardFinish = new EventEmitter();
 
+  constructor(
+    private cd: ChangeDetectorRef
+  ) { }
+
+  updateButtons(index: number) {
+    this.buttonLabels = {
+      ...this.defaultButtonLabels,
+      ...(this.step?.buttonLabels ?? {}),
+    };
+    this.showPrevButton = index > 0;
+    this.showNextButton = index <= this.steps.length - 1;
+    this.cd.detectChanges();
+  }
+
   updateIndex(index: number) {
     if (this.steps?.length && index >= 0 && index < this.steps.length) {
       this.currentIndex = index;
-      this.startButtonEnabled = index === 0;
-      this.backButtonEnabled = index > 0;
-      this.nextButtonEnabled = index > 0 && index < this.steps.length - 1;
       this.projectContent();
+    }
+  }
+
+  renderErrorState() {
+    if (this.stepContainer) {
+      this.stepContainer.clear();
+      this.stepContainer.createEmbeddedView(this.errorTemplate ?? this.defaultErrorTemplate);
     }
   }
 
@@ -51,6 +82,7 @@ export class StepperComponent implements AfterViewInit {
     const formData = this.step?.stepForm?.value;
     // check if errorChecker expression, and if pass then redirect to error state.
     if (formData && this.step?.errorChecker && this.step.errorChecker(formData)) {
+      this.renderErrorState();
       return;
     }
     const updateIndex = this.currentIndex + 1;
@@ -70,6 +102,7 @@ export class StepperComponent implements AfterViewInit {
     if (this.steps.length && this.stepContainer) {
       this.stepContainer.clear();
       this.stepContainer.createEmbeddedView(this.step?.content!);
+      this.updateButtons(this.currentIndex);
     }
   }
 

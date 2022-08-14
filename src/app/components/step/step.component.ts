@@ -12,6 +12,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 export class StepComponent {
 
   @Input() header!: string;
+  @Input() buttonLabels: { next?: string; back?: string; } | undefined;
   @Input() stepForm: FormControl | FormGroup | FormArray | undefined;
   @Input() errorChecker: Function | undefined;
 

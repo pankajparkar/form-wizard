@@ -1,18 +1,18 @@
 <div class="container">
     <div class="stepper-content">
         <fw-stepper (nextClick)="nextClick($event)" (winzardFinish)="winzardFinish()">
-            <fw-step [header]="'Hello There!'">
+            <fw-step [header]="'Hello There!'" [buttonLabels]="{next: 'Start'}">
                 <fw-welcome></fw-welcome>
             </fw-step>
             <fw-step [header]="'User Details'" [errorChecker]="errorChecker">
                 <fw-user-details-form [userDetails]="userDetails"></fw-user-details-form>
             </fw-step>
-            <fw-step [header]="'Summary'">
+            <fw-step [header]="'Summary'" [buttonLabels]="{next: 'Buy'}">
                 <fw-summary [userDetails]="userDetails"></fw-summary>
             </fw-step>
-            <fw-step [header]="'Error'">
+            <ng-template #error>
                 <fw-error></fw-error>
-            </fw-step>
+            </ng-template>
         </fw-stepper>
     </div>
 </div>
