@@ -27,6 +27,7 @@
       "@constants/*": ["./src/app/constants/*"],
       "@components/*": ["./src/app/components/*"],
       "@models/*": ["./src/app/models/*"],
+      "@directives/*": ["./src/app/directives/*"],
     }
   },
   "angularCompilerOptions": {

@@ -1,7 +1,7 @@
 import { Component, ContentChild, Input, TemplateRef, ViewChild, ViewContainerRef, ViewRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { StepHeaderDirective } from '@components/step-header/step-header.directive';
+import { StepHeaderDirective } from '@directives/step-header.directive';
 
 @Component({
   selector: 'fw-step',

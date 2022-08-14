@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StepperComponent } from '../stepper/stepper.component';
-import { StepComponent } from '../step/step.component';
-import { WelcomeComponent } from '../welcome/welcome.component';
-import { UserDetailsFormComponent } from '../user-details-form/user-details-form.component';
-import { SummaryComponent } from '../summary/summary.component';
-import { ErrorComponent } from '../error/error.component';
-import { FormWizardService } from '@services/form-wizard.service';
+import { StepperComponent } from '@components/stepper/stepper.component';
+import { StepComponent } from '@components/step/step.component';
+import { WelcomeComponent } from '@components/welcome/welcome.component';
+import { UserDetailsFormComponent } from '@components/user-details-form/user-details-form.component';
+import { SummaryComponent } from '@components/summary/summary.component';
+import { ErrorComponent } from '@components/error/error.component';
+import { StepHeaderDirective } from '@directives/step-header.directive';
 import { UserDetailsWizard } from '@models/user-details-wizard.model';
 import { UserDetails } from '@models/user-details.model';
-import { StepHeaderDirective } from '@components/step-header/step-header.directive';
+import { FormWizardService } from '@services/form-wizard.service';
 
 @Component({
   selector: 'fw-user-wizard',
