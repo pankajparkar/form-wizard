@@ -31,7 +31,7 @@ export class UserWizardComponent {
     private formWizard: FormWizardService<UserDetailsWizard>,
   ) { }
 
-  onNext(event: any) {
+  nextClick(event: any) {
     if (!!event) {
       this.formWizard.setDetails(event);
     }
@@ -41,7 +41,7 @@ export class UserWizardComponent {
     return this.formWizard.getDetails().userDetails;
   }
 
-  onFinish() {
+  winzardFinish() {
     this.formWizard.submit();
   }
 

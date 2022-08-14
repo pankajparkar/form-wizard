@@ -1,4 +1,4 @@
-import { Component, Host, Input, Optional } from '@angular/core';
+import { Component, Host, Input, OnInit, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { locations } from 'src/app/constants/locations';
@@ -18,7 +18,7 @@ import { UserDetails } from 'src/app/models/user-details.model';
   templateUrl: './user-details-form.component.html',
   styleUrls: ['./user-details-form.component.scss']
 })
-export class UserDetailsFormComponent {
+export class UserDetailsFormComponent implements OnInit {
 
   locations = locations;
   packages = packages;

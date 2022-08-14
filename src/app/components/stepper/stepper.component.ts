@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component, ContentChildren, EventEmitter, Input,
   Output, QueryList, ViewChild, ViewContainerRef,
 } from '@angular/core';
@@ -15,7 +16,7 @@ import { StepComponent } from '../step/step.component';
   styleUrls: ['./stepper.component.scss'],
   exportAs: 'fwStepper'
 })
-export class StepperComponent {
+export class StepperComponent implements AfterViewInit {
 
   backButtonEnabled = false;
   nextButtonEnabled = false;
@@ -28,9 +29,9 @@ export class StepperComponent {
 
   @Input() currentIndex = 0;
 
-  @Output() onNext = new EventEmitter();
-  @Output() onPrev = new EventEmitter();
-  @Output() onFinish = new EventEmitter();
+  @Output() nextClick = new EventEmitter();
+  @Output() prevClick = new EventEmitter();
+  @Output() winzardFinish = new EventEmitter();
 
   updateIndex(index: number) {
     if (this.steps?.length && index >= 0 && index < this.steps.length) {
@@ -48,15 +49,15 @@ export class StepperComponent {
     }
     const updateIndex = this.currentIndex + 1;
     this.updateIndex(this.currentIndex + 1);
-    this.onNext.emit(this.step?.stepForm?.value);
+    this.nextClick.emit(this.step?.stepForm?.value);
     if (this.steps.length === updateIndex) {
-      this.onFinish.emit();
+      this.winzardFinish.emit();
     }
   }
 
   prev() {
     this.updateIndex(this.currentIndex - 1);
-    this.onPrev.emit();
+    this.prevClick.emit();
   }
 
   private projectContent() {

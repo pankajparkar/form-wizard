@@ -1,6 +1,6 @@
 <div class="container">
     <div class="stepper-content">
-        <fw-stepper (onNext)="onNext($event)" (onFinish)="onFinish()">
+        <fw-stepper (nextClick)="nextClick($event)" (winzardFinish)="winzardFinish()">
             <fw-step [header]="'Hello There!'">
                 <fw-welcome></fw-welcome>
             </fw-step>
