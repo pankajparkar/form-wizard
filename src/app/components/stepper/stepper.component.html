@@ -6,10 +6,10 @@
         <ng-container #stepContainer></ng-container>
     </div>
     <div class="action-buttons">
-        <button type="button" (click)="prev()" *ngIf="showPrevButton">
+        <button type="button" class="secondary-btn" (click)="prev()" *ngIf="showPrevButton">
             {{ buttonLabels.prev }}
         </button>
-        <button type="button" (click)="next()" *ngIf="showNextButton">
+        <button type="button" class="primary-btn" (click)="next()" *ngIf="showNextButton">
             {{ buttonLabels.next }}
         </button>
     </div>
