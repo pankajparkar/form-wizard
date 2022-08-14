@@ -39,6 +39,9 @@ export class StepperComponent {
   }
 
   next() {
+    if (this.step?.stepForm && this.step.stepForm.invalid) {
+      return;
+    }
     const updateIndex = this.currentIndex + 1;
     this.updateIndex(this.currentIndex + 1);
     this.onNext.emit();
@@ -55,9 +58,12 @@ export class StepperComponent {
   private projectContent() {
     if (this.steps.length && this.stepContainer) {
       this.stepContainer.clear();
-      const step = this.steps.get(this.currentIndex);
-      this.stepContainer.createEmbeddedView(step?.content!);
+      this.stepContainer.createEmbeddedView(this.step?.content!);
     }
+  }
+
+  get step() {
+    return this.steps.get(this.currentIndex);
   }
 
   ngAfterViewInit() {

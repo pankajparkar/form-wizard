@@ -1,5 +1,6 @@
 import { Component, ContentChild, Input, TemplateRef, ViewChild, ViewContainerRef, ViewRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'fw-step',
@@ -11,6 +12,8 @@ import { CommonModule } from '@angular/common';
 export class StepComponent {
 
   @Input() header!: string;
+  @Input() stepForm: FormControl | FormGroup | FormArray | undefined;
+
   @ViewChild('stepContent', { read: TemplateRef }) content!: TemplateRef<unknown>;
 
 }

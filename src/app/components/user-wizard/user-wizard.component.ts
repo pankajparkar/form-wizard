@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { StepperComponent } from '../stepper/stepper.component';
@@ -7,6 +7,8 @@ import { WelcomeComponent } from '../welcome/welcome.component';
 import { UserDetailsFormComponent } from '../user-details-form/user-details-form.component';
 import { SummaryComponent } from '../summary/summary.component';
 import { ErrorComponent } from '../error/error.component';
+import { FormWizardService } from '../../services/form-wizard.service';
+import { UserDetailsWizard } from '../../models/user-details-wizard.model';
 
 @Component({
   selector: 'fw-user-wizard',
@@ -23,11 +25,18 @@ import { ErrorComponent } from '../error/error.component';
   templateUrl: './user-wizard.component.html',
   styleUrls: ['./user-wizard.component.scss'],
 })
-export class UserWizardComponent implements OnInit {
+export class UserWizardComponent {
 
-  constructor() { }
+  constructor(
+    private formWizard: FormWizardService<UserDetailsWizard>
+  ) { }
 
-  ngOnInit(): void {
+  onNext() {
+    // this.s.setDetails(null)
+  }
+
+  onFinish() {
+    this.formWizard.submit();
   }
 
 }

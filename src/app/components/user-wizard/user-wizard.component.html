@@ -1,6 +1,6 @@
 <div class="container">
     <div class="stepper-content">
-        <fw-stepper>
+        <fw-stepper (onNext)="onNext()" (onFinish)="onFinish()">
             <fw-step [header]="'Test 1'">
                 <fw-welcome></fw-welcome>
             </fw-step>

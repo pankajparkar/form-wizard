@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Host, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { locations } from 'src/app/constants/locations';
 import { packages } from 'src/app/constants/packages';
 import { PremiumCalculationService } from 'src/app/services/premium-calculation.service';
+import { StepComponent } from '../step/step.component';
 
 @Component({
   selector: 'fw-user-details-form',
@@ -31,9 +32,16 @@ export class UserDetailsFormComponent {
 
   constructor(
     private premiumCalculation: PremiumCalculationService,
+    @Host() @Optional() private step: StepComponent,
   ) { }
 
   ngOnInit(): void {
+
+    // Bind a for to step control if it exists
+    if (this.step) {
+      this.step.stepForm = this.userDetailsForm;
+    }
+
     // TODO: on destroy
     // TODO: be specific on control when subscribe
     this.userDetailsForm.valueChanges.subscribe(({ package: pckg, age, location }) => {
@@ -44,7 +52,7 @@ export class UserDetailsFormComponent {
         total = this.premiumCalculation.calculate(age, selectedLocation.rate, selectedPackage.percentage);
       }
       this.userDetailsForm.patchValue({ total }, { onlySelf: true, emitEvent: false });
-    })
+    });
   }
 
 }
