@@ -4,7 +4,7 @@
             <fw-step [header]="'Hello There!'">
                 <fw-welcome></fw-welcome>
             </fw-step>
-            <fw-step [header]="'User Details'">
+            <fw-step [header]="'User Details'" [errorChecker]="errorChecker">
                 <fw-user-details-form [userDetails]="userDetails"></fw-user-details-form>
             </fw-step>
             <fw-step [header]="'Summary'">

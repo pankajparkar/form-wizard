@@ -13,6 +13,7 @@ export class StepComponent {
 
   @Input() header!: string;
   @Input() stepForm: FormControl | FormGroup | FormArray | undefined;
+  @Input() errorChecker: Function | undefined;
 
   @ViewChild('stepContent', { read: TemplateRef }) content!: TemplateRef<unknown>;
 

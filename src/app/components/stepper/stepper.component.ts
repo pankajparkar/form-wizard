@@ -4,7 +4,8 @@ import {
   Output, QueryList, ViewChild, ViewContainerRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StepComponent } from '../step/step.component';
+
+import { StepComponent } from '@components/step/step.component';
 
 @Component({
   standalone: true,
@@ -14,7 +15,7 @@ import { StepComponent } from '../step/step.component';
   ],
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
-  exportAs: 'fwStepper'
+  exportAs: 'fwStepper',
 })
 export class StepperComponent implements AfterViewInit {
 
@@ -48,6 +49,10 @@ export class StepperComponent implements AfterViewInit {
       return;
     }
     const formData = this.step?.stepForm?.value;
+    // check if errorChecker expression, and if pass then redirect to error state.
+    if (formData && this.step?.errorChecker && this.step.errorChecker(formData)) {
+      return;
+    }
     const updateIndex = this.currentIndex + 1;
     this.updateIndex(this.currentIndex + 1);
     this.nextClick.emit(formData);

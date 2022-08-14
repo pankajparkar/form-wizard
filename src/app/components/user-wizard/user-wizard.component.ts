@@ -9,6 +9,7 @@ import { SummaryComponent } from '../summary/summary.component';
 import { ErrorComponent } from '../error/error.component';
 import { FormWizardService } from '@services/form-wizard.service';
 import { UserDetailsWizard } from '@models/user-details-wizard.model';
+import { UserDetails } from '@models/user-details.model';
 
 @Component({
   selector: 'fw-user-wizard',
@@ -35,6 +36,10 @@ export class UserWizardComponent {
     if (!!event) {
       this.formWizard.setDetails(event);
     }
+  }
+
+  errorChecker(formData: UserDetails) {
+    return formData.age > 100;
   }
 
   get userDetails() {
