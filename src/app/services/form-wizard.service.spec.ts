@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { FormWizardService } from './form-wizard.service';
 
 describe('FormWizardService', () => {
-  let service: FormWizardService;
+  let service: FormWizardService<any>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

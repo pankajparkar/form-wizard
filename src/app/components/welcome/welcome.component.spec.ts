@@ -8,16 +8,18 @@ describe('WelcomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ WelcomeComponent ]
+      imports: [WelcomeComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(WelcomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create an instance of a component', () => {
     expect(component).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector('.welcome-step-wrapper>div').textContent).toContain('');
   });
+
 });
