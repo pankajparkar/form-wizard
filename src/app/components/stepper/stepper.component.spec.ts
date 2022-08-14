@@ -6,7 +6,7 @@ import { StepHeaderDirective } from '@directives/step-header.directive';
 
 import { StepperComponent } from './stepper.component';
 
-fdescribe('StepperComponent', () => {
+describe('StepperComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
@@ -61,7 +61,7 @@ fdescribe('StepperComponent', () => {
     expect(component.stepper.steps.length).toBe(3);
   });
 
-  fdescribe('Buttons', () => {
+  describe('Buttons', () => {
     it('should show next button and not backButton', () => {
       expect(component).toBeTruthy();
       expect(component.stepper.showNextButton).toBe(true);
@@ -78,7 +78,7 @@ fdescribe('StepperComponent', () => {
     });
   });
 
-  fdescribe('Next', () => {
+  describe('Next', () => {
     it('should not proceed if stepForm is invalid', () => {
       const firstStep = component.stepper.steps.get(0)!;
       firstStep.stepForm = new FormGroup({
