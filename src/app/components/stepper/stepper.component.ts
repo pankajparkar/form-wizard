@@ -29,7 +29,6 @@ export class StepperComponent implements AfterViewInit {
     next: 'Next',
   };
   buttonLabels = { ...this.defaultButtonLabels };
-  isErrorPage = false;
 
   @ContentChildren(StepComponent, { descendants: true })
   steps!: QueryList<StepComponent>;
@@ -50,13 +49,13 @@ export class StepperComponent implements AfterViewInit {
     private cd: ChangeDetectorRef
   ) { }
 
-  updateButtons(index: number) {
+  updateButtons(index: number, isErrorState = false) {
     this.buttonLabels = {
       ...this.defaultButtonLabels,
       ...(this.step?.buttonLabels ?? {}),
     };
     this.showPrevButton = index > 0;
-    this.showNextButton = index <= this.steps.length - 1;
+    this.showNextButton = index <= this.steps.length - 1 && !isErrorState;
     this.cd.detectChanges();
   }
 
@@ -71,6 +70,7 @@ export class StepperComponent implements AfterViewInit {
     if (this.stepContainer) {
       this.stepContainer.clear();
       this.stepContainer.createEmbeddedView(this.errorTemplate ?? this.defaultErrorTemplate);
+      this.updateButtons(this.currentIndex, true);
     }
   }
 
@@ -79,9 +79,8 @@ export class StepperComponent implements AfterViewInit {
       return;
     }
     const formData = this.step?.stepForm?.value;
-    this.isErrorPage = formData && this.step?.errorChecker && this.step.errorChecker(formData);
     // check if errorChecker expression, and if pass then redirect to error state.
-    if (this.isErrorPage) {
+    if (formData && this.step?.errorChecker && this.step.errorChecker(formData)) {
       this.renderErrorState();
       return;
     }
@@ -112,6 +111,7 @@ export class StepperComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.projectContent();
+    // TODO: unsubscribe event
     this.steps.changes.subscribe((step) => {
       this.projectContent();
     });

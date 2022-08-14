@@ -4,7 +4,7 @@
         <button type="button" (click)="prev()" *ngIf="showPrevButton">
             {{ buttonLabels.prev }}
         </button>
-        <button type="button" (click)="next()" *ngIf="showNextButton && !isErrorPage">
+        <button type="button" (click)="next()" *ngIf="showNextButton">
             {{ buttonLabels.next }}
         </button>
     </div>
