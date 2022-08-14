@@ -1,10 +1,10 @@
 import { Directive, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: 'ng-template[fwStepHeader]',
+  selector: 'ng-template[fwErrorStepHeader]',
   standalone: true,
 })
-export class StepHeaderDirective {
+export class ErrorStepHeaderDirective {
 
   constructor(
     public template: TemplateRef<unknown>,

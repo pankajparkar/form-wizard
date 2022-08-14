@@ -1,13 +1,13 @@
-import { Directive, TemplateRef, ViewChild } from '@angular/core';
+import { ContentChild, Directive, TemplateRef, ViewChild } from '@angular/core';
 import { StepHeaderDirective } from './step-header.directive';
 
 @Directive({
-  standalone: true,
   selector: 'ng-template[fwStepError]',
+  standalone: true,
 })
 export class StepErrorDirective {
 
-  @ViewChild(StepHeaderDirective) stepHeader!: StepHeaderDirective;
+  @ContentChild(StepHeaderDirective) stepHeader!: StepHeaderDirective;
 
   constructor(
     public template: TemplateRef<unknown>,

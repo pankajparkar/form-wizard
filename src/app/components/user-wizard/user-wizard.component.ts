@@ -12,6 +12,7 @@ import { UserDetailsWizard } from '@models/user-details-wizard.model';
 import { UserDetails } from '@models/user-details.model';
 import { FormWizardService } from '@services/form-wizard.service';
 import { StepErrorDirective } from '@directives/step-error.directive';
+import { ErrorStepHeaderDirective } from '@directives/error-step-header.directive';
 
 @Component({
   selector: 'fw-user-wizard',
@@ -25,6 +26,7 @@ import { StepErrorDirective } from '@directives/step-error.directive';
     SummaryComponent,
     ErrorComponent,
     StepHeaderDirective,
+    ErrorStepHeaderDirective,
     StepErrorDirective,
   ],
   templateUrl: './user-wizard.component.html',
