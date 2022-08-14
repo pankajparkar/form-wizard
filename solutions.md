@@ -7,8 +7,9 @@
 ## Philosophy -
 
 - All components are embedded inside one another
-- Stepper Component  have multiple Steps
+- Stepper Component have multiple Steps
 - These steps are programattically added to the DOM, based on current wizard step.
+- Each time when user do Next, new step shown on the screen. 
 - Each step carry its own header (ng-template fwStepHeader).
 
 ## Sample Code - 
@@ -43,3 +44,6 @@ Above sample code is just a demonstration of how it will look like when it comes
 - If `errorChecker` returns `false`, then it redirect user to Error screen. it is read by using `fwStepError` directive.
 - Step component can also deal with form, it won't allow to proceed unless complete form is valid.
 - We have used ContentChildren, ContentChild, ViewChildren, and @ViewChild to achieve this.
+- All are standalone components develop with Angular.
+- CodeSize - Gzip - 76kb
+- Due to time constraint, I was not able to spend enough time on CSS part
