@@ -9,7 +9,7 @@
         <label>
             Age
         </label>
-        <input type="text" formControlName="age" />
+        <input type="number" formControlName="age" />
     </div>
     <div class="form-control">
         <label>
@@ -28,9 +28,12 @@
             <input type="radio" [value]="package.id" formControlName="package" />
         </label>
     </div>
-    <div>
-        <b>Your premium is: 500HKD</b>
-    </div>
+    <ng-container *ngIf="userDetailsForm.value as formValues">
+        <div *ngIf="formValues.total">
+            <b>Your premium is: {{ formValues.total }} {{ formValues.location }}</b>
+        </div>
+    </ng-container>
+
 
     {{ userDetailsForm.value | json }}
 </div>

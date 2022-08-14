@@ -1,20 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-
-// TODO: move to different files
-export interface Location {
-  id: string;
-  name: string;
-}
-
-// TODO: move to different files
-export interface Package {
-  id: string;
-  name: string;
-  description: string;
-  percentage: number;
-}
+import { locations } from 'src/app/constants/locations';
+import { packages } from 'src/app/constants/packages';
+import { PremiumCalculationService } from 'src/app/services/premium-calculation.service';
 
 @Component({
   selector: 'fw-user-details-form',
@@ -29,51 +18,33 @@ export interface Package {
 })
 export class UserDetailsFormComponent {
 
-  // TODO: move constants to somewhere else
-  locations: Location[] = [
-    {
-      id: 'HKD',
-      name: 'Hong Kong',
-    },
-    {
-      id: 'USD',
-      name: 'USA',
-    },
-    {
-      id: 'AUD',
-      name: 'Australia',
-    },
-  ];
-
-  // TODO: move constants to somewhere else
-  packages: Package[] = [
-    {
-      id: 'standard',
-      name: 'Standard',
-      description: 'Standard',
-      percentage: 1,
-    },
-    {
-      id: 'safe',
-      name: 'Safe',
-      description: 'Safe (+250HKD, 50%)',
-      percentage: 50,
-    },
-    {
-      id: 'super_safe',
-      name: 'Super Safe',
-      description: 'Super Safe (+375',
-      percentage: 50,
-    },
-  ]
+  locations = locations;
+  packages = packages;
 
   userDetailsForm = new FormGroup({
     name: new FormControl<string>('', [Validators.required]),
-    age: new FormControl<string>('', [Validators.required]),
+    age: new FormControl<number | null>(null, [Validators.required]),
     location: new FormControl<string>('', [Validators.required]),
     package: new FormControl<string>('standard', [Validators.required]),
+    total: new FormControl<number>(0),
   });
 
-  constructor() { }
+  constructor(
+    private premiumCalculation: PremiumCalculationService,
+  ) { }
+
+  ngOnInit(): void {
+    // TODO: on destroy
+    // TODO: be specific on control when subscribe
+    this.userDetailsForm.valueChanges.subscribe(({ package: pckg, age, location }) => {
+      let total = 0;
+      if (pckg && location && !!age) {
+        const selectedPackage = this.packages.find(p => p.id === pckg)!;
+        const selectedLocation = this.locations.find(p => p.id === location)!;
+        total = this.premiumCalculation.calculate(age, selectedLocation.rate, selectedPackage.percentage);
+      }
+      this.userDetailsForm.patchValue({ total }, { onlySelf: true, emitEvent: false });
+    })
+  }
 
 }
