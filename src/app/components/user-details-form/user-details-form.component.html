@@ -24,8 +24,8 @@
     </div>
     <div class="form-control">
         <label *ngFor="let package of packages">
-            {{ package.description }}
             <input type="radio" [value]="package.id" formControlName="package" />
+            {{ package.description }}
         </label>
     </div>
     <ng-container *ngIf="userDetailsForm.value as formValues">

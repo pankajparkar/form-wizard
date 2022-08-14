@@ -3,3 +3,13 @@ html, body {
     height: 100%;
     margin: 0 auto;
 }
+
+/* Start: form controls CSS */
+
+.form-control {
+    display: flex;
+    flex-flow: column nowrap;
+    padding-bottom: 10px;
+}
+
+/* End: form controls CSS */

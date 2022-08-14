@@ -1,10 +1,4 @@
 :host {
-    height: inherit;
-    .container {
-        align-items: center;
-        display: flex;
-        height: inherit;
-        justify-content: center;
-        min-height: 500px;
-    }
+    height: 100%;
+    display: block;
 }
