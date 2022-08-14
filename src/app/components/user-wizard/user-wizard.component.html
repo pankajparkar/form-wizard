@@ -1,14 +1,14 @@
 <div class="container">
     <div class="stepper-content">
-        <fw-stepper (onNext)="onNext()" (onFinish)="onFinish()">
-            <fw-step [header]="'Test 1'">
+        <fw-stepper (onNext)="onNext($event)" (onFinish)="onFinish()">
+            <fw-step [header]="'Hello There!'">
                 <fw-welcome></fw-welcome>
             </fw-step>
             <fw-step [header]="'User Details'">
-                <fw-user-details-form></fw-user-details-form>
+                <fw-user-details-form [userDetails]="userDetails"></fw-user-details-form>
             </fw-step>
             <fw-step [header]="'Summary'">
-                <fw-summary></fw-summary>
+                <fw-summary [userDetails]="userDetails"></fw-summary>
             </fw-step>
             <fw-step [header]="'Error'">
                 <fw-error></fw-error>

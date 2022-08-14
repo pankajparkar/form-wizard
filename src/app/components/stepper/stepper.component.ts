@@ -1,4 +1,7 @@
-import { Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef, ViewChild, ViewChildren, ViewContainerRef, ViewRef } from '@angular/core';
+import {
+  Component, ContentChildren, EventEmitter, Input,
+  Output, QueryList, ViewChild, ViewContainerRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StepComponent } from '../step/step.component';
 
@@ -17,16 +20,17 @@ export class StepperComponent {
   backButtonEnabled = false;
   nextButtonEnabled = false;
   startButtonEnabled = true;
-  @ContentChildren(StepComponent, { descendants: true }) steps!: QueryList<StepComponent>;
-  @ViewChild('stepContainer', { read: ViewContainerRef }) stepContainer: ViewContainerRef | undefined;
+
+  @ContentChildren(StepComponent, { descendants: true })
+  steps!: QueryList<StepComponent>;
+  @ViewChild('stepContainer', { read: ViewContainerRef })
+  stepContainer: ViewContainerRef | undefined;
 
   @Input() currentIndex = 0;
 
   @Output() onNext = new EventEmitter();
   @Output() onPrev = new EventEmitter();
   @Output() onFinish = new EventEmitter();
-
-  constructor() { }
 
   updateIndex(index: number) {
     if (this.steps?.length && index >= 0 && index < this.steps.length) {
@@ -44,7 +48,7 @@ export class StepperComponent {
     }
     const updateIndex = this.currentIndex + 1;
     this.updateIndex(this.currentIndex + 1);
-    this.onNext.emit();
+    this.onNext.emit(this.step?.stepForm?.value);
     if (this.steps.length === updateIndex) {
       this.onFinish.emit();
     }

@@ -28,11 +28,17 @@ import { UserDetailsWizard } from '../../models/user-details-wizard.model';
 export class UserWizardComponent {
 
   constructor(
-    private formWizard: FormWizardService<UserDetailsWizard>
+    private formWizard: FormWizardService<UserDetailsWizard>,
   ) { }
 
-  onNext() {
-    // this.s.setDetails(null)
+  onNext(event: any) {
+    if (!!event) {
+      this.formWizard.setDetails(event);
+    }
+  }
+
+  get userDetails() {
+    return this.formWizard.getDetails().userDetails;
   }
 
   onFinish() {

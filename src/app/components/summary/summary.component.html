@@ -1,11 +1,11 @@
-<div class="summary">
+<div class="summary" *ngIf="userDetails">
     <h3>Summary</h3>
     <h4>John,</h4>
     <div class="user-details">
-        <div>Name: John</div>
-        <div>Age: 50</div>
-        <div>Where do you live: Hong Kong</div>
-        <div>Package: Standard</div>
-        <div>Premium: 500HKD</div>
+        <div>Name: {{userDetails.name}}</div>
+        <div>Age: {{userDetails.age}}50</div>
+        <div>Where do you live: {{userDetails.location}}</div>
+        <div>Package: {{userDetails.package}}</div>
+        <div>Premium: {{ userDetails.total }}</div>
     </div>
 </div>

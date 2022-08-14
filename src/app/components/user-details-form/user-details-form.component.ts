@@ -1,10 +1,11 @@
-import { Component, Host, Optional } from '@angular/core';
+import { Component, Host, Input, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { locations } from 'src/app/constants/locations';
 import { packages } from 'src/app/constants/packages';
 import { PremiumCalculationService } from 'src/app/services/premium-calculation.service';
 import { StepComponent } from '../step/step.component';
+import { UserDetails } from 'src/app/models/user-details.model';
 
 @Component({
   selector: 'fw-user-details-form',
@@ -30,13 +31,17 @@ export class UserDetailsFormComponent {
     total: new FormControl<number>(0),
   });
 
+  @Input() userDetails!: UserDetails;
+
   constructor(
     private premiumCalculation: PremiumCalculationService,
     @Host() @Optional() private step: StepComponent,
   ) { }
 
   ngOnInit(): void {
-
+    if (this.userDetails) {
+      this.userDetailsForm.patchValue(this.userDetails);
+    }
     // Bind a for to step control if it exists
     if (this.step) {
       this.step.stepForm = this.userDetailsForm;

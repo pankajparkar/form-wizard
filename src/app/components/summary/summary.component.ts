@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UserDetails } from 'src/app/models/user-details.model';
 
 @Component({
   selector: 'fw-summary',
@@ -8,11 +9,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss']
 })
-export class SummaryComponent implements OnInit {
+export class SummaryComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  @Input() userDetails!: UserDetails;
 
 }
