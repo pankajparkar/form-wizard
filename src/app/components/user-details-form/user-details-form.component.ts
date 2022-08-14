@@ -30,7 +30,7 @@ export class UserDetailsFormComponent implements OnInit, OnDestroy {
     age: new FormControl<number | null>(null, [Validators.required]),
     location: new FormControl<string>('', [Validators.required]),
     package: new FormControl<string>('standard', {
-      initialValueIsDefault: true,
+      nonNullable: true,
       validators: [Validators.required],
     }),
     total: new FormControl<number>(0),
